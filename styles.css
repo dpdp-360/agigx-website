@@ -6,7 +6,7 @@
 }
 
 :root {
-    --primary-color: #2563eb;
+    --primary-color: #1e64f0;
     --primary-dark: #1e40af;
     --secondary-color: #3b82f6;
     --accent-color: #f97316;
@@ -226,6 +226,52 @@ body {
     color: var(--text-secondary);
     margin-bottom: 3rem;
     line-height: 1.8;
+}
+
+.countdown-banner {
+    margin: 0 auto 2rem;
+    padding: 1rem 1.25rem;
+    max-width: 760px;
+    background: rgba(37, 99, 235, 0.06);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+    border-radius: 12px;
+}
+
+.countdown-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+}
+
+.countdown-timer {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.countdown-unit {
+    background: white;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 0.75rem 0.5rem;
+    text-align: center;
+}
+
+.countdown-unit span {
+    display: block;
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--primary-color);
+}
+
+.countdown-unit small {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }
 
 .hero-stats {
@@ -968,6 +1014,10 @@ section {
 
     .hero-stats {
         grid-template-columns: 1fr;
+    }
+
+    .countdown-timer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
     .section-title {

@@ -122,6 +122,60 @@ if (chatMessages.length > 0) {
     });
 }
 
+// Countdown Timer
+function initCountdown() {
+    const banner = document.querySelector('.countdown-banner');
+    if (!banner) return;
+
+    const target = banner.getAttribute('data-countdown-target');
+    if (!target) return;
+
+    const targetDate = new Date(target).getTime();
+    if (Number.isNaN(targetDate)) return;
+
+    const daysEl = document.querySelector('#countdown-days');
+    const hoursEl = document.querySelector('#countdown-hours');
+    const minutesEl = document.querySelector('#countdown-minutes');
+    const secondsEl = document.querySelector('#countdown-seconds');
+    const labelEl = banner.querySelector('.countdown-label');
+
+    if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+
+    const update = () => {
+        const now = Date.now();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+            daysEl.textContent = '00';
+            hoursEl.textContent = '00';
+            minutesEl.textContent = '00';
+            secondsEl.textContent = '00';
+            if (labelEl) labelEl.textContent = 'Countdown complete';
+            return false;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((distance / (1000 * 60)) % 60);
+        const seconds = Math.floor((distance / 1000) % 60);
+
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
+        return true;
+    };
+
+    const keepRunning = update();
+    if (!keepRunning) return;
+
+    const timer = setInterval(() => {
+        if (!update()) clearInterval(timer);
+    }, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', initCountdown);
+
 // Form Handling (if contact form is added)
 const contactForm = document.querySelector('#contact form');
 if (contactForm) {
